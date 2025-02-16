@@ -71,8 +71,3 @@ def is_prime(n):
         if n % i == 0:
             return False
     return True
-
-
-numbers = [10, 15, 17, 19, 21, 23, 29, 30]
-prime_numbers = list(filter(lambda x: is_prime(x), numbers))
-print("Простые числа:", prime_numbers)

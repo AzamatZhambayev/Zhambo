@@ -21,29 +21,29 @@ movies = [
 def is_high_score(movie):
     return movie["imdb"] > 5.5
 
-    print(is_high_score(movies[0]))
+print(is_high_score(movies[0]))
 
 # Task 2: Sublist of movies with IMDB > 5.5
 def high_score_movies(movies):
     return [movie for movie in movies if movie["imdb"] > 5.5]
 
-    print(high_score_movies(movies))
+print(high_score_movies(movies))
 
 # Task 3: Movies by category
 def movies_by_category(movies, category):
     return [movie for movie in movies if movie["category"] == category]
 
-    print(movies_by_category(movies, "Romance"))
+print(movies_by_category(movies, "Romance"))
 
 # Task 4: Average IMDB score of movies
 def average_imdb(movies):
     return sum(movie["imdb"] for movie in movies) / len(movies)
 
-    print(average_imdb(movies))
+print(average_imdb(movies))
 
 # Task 5: Average IMDB score by category
 def average_imdb_by_category(movies, category):
     filtered_movies = movies_by_category(movies, category)
     return average_imdb(filtered_movies) if filtered_movies else 0
 
-    print(average_imdb_by_category(movies, "Romance"))
+print(average_imdb_by_category(movies, "Romance"))
