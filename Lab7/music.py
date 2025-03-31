@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 
-songs = ["song1.mp3", "song2.mp3", "song3.mp3", "song4.mp3"]  
+songs = ["maskoff.mp3", "nights.mp3"]  
 current_song = 0
 pygame.mixer.init()
 pygame.mixer.music.load(songs[current_song])
