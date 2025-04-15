@@ -1,43 +1,39 @@
 import pygame
-
 pygame.init()
-
-
-songs = ["maskoff.mp3", "nights.mp3"]  
-current_song = 0
-pygame.mixer.init()
-pygame.mixer.music.load(songs[current_song])
-
-
-screen = pygame.display.set_mode((400, 200))
-pygame.display.set_caption("Music Player")
-
-running = True
-
-def play_song(index):
-    pygame.mixer.music.load(songs[index])
+screen = pygame.display.set_mode((800,600))
+pygame.display.set_caption("Music player")
+songs = [r'maskoff.mp3', r'nights.mp3']
+pygame.mixer.music.load(songs[0])
+play=False
+font = pygame.font.Font(None, 18)
+BLACK=(0,0,0)
+def next_song():
+    global songs,play
+    songs=songs[1:]+[songs[0]]
+    pygame.mixer.music.load(songs[0])
     pygame.mixer.music.play()
-
+    play=True
+running=True
 while running:
-    screen.fill((255, 255, 255))  
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:  
-                if pygame.mixer.music.get_busy():
+     screen.fill((255, 255, 255))
+     t = font.render("previous - press left, play/stop-space, next-rigth", True, BLACK)
+     screen.blit(t, (100,300))
+     for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            running=False
+        elif event.type==pygame.KEYDOWN:
+            if event.key==pygame.K_LEFT:
+                songs=songs[-1:]+songs[-1:]
+                pygame.mixer.music.load(songs[0])
+                pygame.mixer.music.play()
+            elif event.key==pygame.K_RIGHT:
+                next_song()
+            elif event.key==pygame.K_SPACE:
+                if play:
                     pygame.mixer.music.pause()
+                    play=False
                 else:
-                    pygame.mixer.music.unpause()
-            elif event.key == pygame.K_s: 
-                pygame.mixer.music.stop()
-            elif event.key == pygame.K_n:  
-                current_song = (current_song + 1) % len(songs)
-                play_song(current_song)
-            elif event.key == pygame.K_p:  
-                current_song = (current_song - 1) % len(songs)
-                play_song(current_song)
-
-    pygame.display.flip()
-
+                    pygame.mixer.music.play()
+                    play=True
+     pygame.display.flip()
 pygame.quit()

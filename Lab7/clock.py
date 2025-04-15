@@ -11,7 +11,7 @@ minute_hand = pygame.image.load("min.png")
 second_hand = pygame.image.load("sec.png")
 
 mickey_face = pygame.transform.scale(mickey_face, (400 , 400))
-minute_hand = pygame.transform.scale(minute_hand, (40, 400))
+minute_hand = pygame.transform.scale(minute_hand, (40, 250))
 second_hand = pygame.transform.scale(second_hand, (450, 500))
 
 center_x, center_y = width // 2, height // 2
@@ -31,14 +31,14 @@ while running:
             running = False
 
     now = datetime.datetime.now()
-    minute_angle = -6 * now.minute 
-    second_angle = -6 * now.second  
+    minute_angle = -6 * now.second 
+    second_angle = -6 * now.minute  
 
     screen.blit(mickey_face, (center_x - 200, center_y - 200))
 
     
-    minute_img, minute_rect = rotate_hand(minute_hand, minute_angle)
-    second_img, second_rect = rotate_hand(second_hand, second_angle)
+    minute_img, minute_rect = rotate_hand(second_hand, second_angle)
+    second_img, second_rect = rotate_hand(minute_hand, minute_angle)
 
     screen.blit(minute_img, minute_rect)
     screen.blit(second_img, second_rect)

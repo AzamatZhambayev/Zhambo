@@ -1,5 +1,5 @@
 #Imports
-import pygame, sys
+import pygame , sys
 from pygame.locals import *
 import random, time
 
@@ -69,6 +69,11 @@ class Player(pygame.sprite.Sprite):
         if self.rect.right < SCREEN_WIDTH:        
               if pressed_keys[K_RIGHT]:
                   self.rect.move_ip(5, 0)
+        if pressed_keys[K_UP]:
+                self.rect.move_ip(0, -5)
+        if self.rect.bottom < SCREEN_HEIGHT:
+            if pressed_keys[K_DOWN]:
+                self.rect.move_ip(0,5)          
                   
 class Point(pygame.sprite.Sprite):
     def __init__(self):
